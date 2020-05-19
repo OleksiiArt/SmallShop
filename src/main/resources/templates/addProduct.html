@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <div th:replace="/fragments/header :: header"/>
+</head>
+
+<body>
+
+<div th:replace="/fragments/header :: navbar"/>
+
+<div class="container">
+
+    <h1 class="jumbotron">
+        Edit product
+    </h1>
+
+    <div class="alert alert-info" th:if="${outOfStockMessage}" th:utext="${outOfStockMessage}"></div>
+
+    <form autocomplete="off" action="#" th:action="@{/createProduct}"
+          th:object="${product}" method="post" role="form">
+
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                   class="alert alert-danger"></label>
+            <input type="text" th:field="*{name}" placeholder="Name"
+                   class="form-control input-lg"/>
+        </div>
+
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                   class="alert alert-danger"></label>
+            <input type="text" th:field="*{description}" placeholder="Description"
+                   class="form-control input-lg"/>
+        </div>
+
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+                   class="alert alert-danger"></label>
+            <input type="text" th:field="*{price}" placeholder="Price"
+                   class="form-control input-lg"/>
+        </div>
+
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"
+                   class="alert alert-danger"></label>
+            <input type="text" th:field="*{quantity}" placeholder="Quantity"
+                   class="form-control input-lg"/>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3" style="float: none; margin: 0 auto;">
+                <input type="submit" class="btn btn-primary btn-block" value="Add product"/>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div th:replace="/fragments/footer :: footer"/>
+
+</body>
+</html>
